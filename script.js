@@ -16,7 +16,7 @@ const consultarPais = async (evento) => {
     //prueba 
 
       // Consulta a la API SI SE ESTA BUSCANDO O NO
-  document.getElementById('resultado').innerText = 'Buscando el archivo que se desea...';
+  document.getElementById('resultado').innerText = 'Operacion sin exito, intente otro dato';
   try {
     // CONSULTA A LA API
     const respuesta = await fetch(url, config);
@@ -25,15 +25,15 @@ const consultarPais = async (evento) => {
       const pais = data[0];
       console.log(data); 
       console.log(pais.name.common);
-      console.log(pais.population);
+      console.log(pais.area);
       console.log(pais.capital);
-      console.log(pais.currencies);
+      console.log(pais.region);
       console.log(pais.flag);
 
       document.getElementById('nombrePais').innerText = pais.name.official;
-      document.getElementById('poblacionPais').innerText = pais.population;
+      document.getElementById('areaPais').innerText = pais.area;
       document.getElementById('capitalPais').innerText = pais.capital[0];
-      document.getElementById('continentePais').innerText = pais.currencies;
+      document.getElementById('regionPais').innerText = pais.region;
       document.getElementById('banderaPais').src = pais.flags.png;
       document.getElementById('resultado').innerText = 'Fue Encontrado';
       tabla.style.display = '';

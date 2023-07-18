@@ -37,7 +37,7 @@
                         <a class="nav-link active" aria-current="page" href="/parcial_ramirez_b/capital.html">Busqueda de Capital</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/parcial_ramirez_b/monedas.html">Busqueda de Monedas</a>
+                        <a class="nav-link active" aria-current="page" href="/parcial_ramirez_b/monedas.html">Busqueda de Region</a>
                     </li>
                 </ul>
             </div>
@@ -46,12 +46,13 @@
 
     <h2 class="mt-3">Ingrese un pais para realizar la busqueda</h2>
     <form id="form">
-        <input type="text" name="pais" id="pais">
-        <button type="submit">Consultar</button> 
+        <input type="text" name="pais" id="pais" class="form-control col-sm-4">
+        <br>
+        <button type="submit" class="btn btn-primary btn-lg col-sm-4">Buscar</button> 
     </form>
     
     <div class="container"> 
-    <p>BUSCAR INFORMACION DE UN PAIS</p>
+    <h6>BUSCAR INFORMACION DE UN PAIS</h6>
     <table border="1px solid">
         <thead>
             <tr>
@@ -69,12 +70,12 @@
                 <td id="capitalPais"></td>
             </tr>            
             <tr>
-                <td>POBLACION</td>
-                <td id="poblacionPais"></td>
+                <td>AREA</td>
+                <td id="areaPais"></td>
             </tr>
             <tr>
                 <td>REGION</td>
-                <td id="continentePais"></td>
+                <td id="regionPais"></td>
             </tr>            <tr>
                 <td>BANDERA</td>
                 <td><img src="" alt="" id="banderaPais"></td>
