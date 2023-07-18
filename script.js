@@ -1,6 +1,8 @@
 const formul = document.querySelector('form');
 const tabla = document.querySelector('table');
 
+tabla.style.display = 'none';
+
 const consultarPais = async (evento) => {
   evento.preventDefault();
   let nombrePais = formul.pais.value;
