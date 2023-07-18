@@ -3,28 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busqueda</title>
+    <title>Busqueda de Países</title>
 </head>
 <body>
-    <h2>Busqueda por Region</h2>
-    <form>
-        <input type="text" id="inputNombre" placeholder="Nombre de la Region">
+    <h2>Busqueda de Países por Región</h2>
+    <form id="regionForm">
+        <input type="text" id="regionInput" placeholder="Nombre de la Región">
         <button type="submit">Buscar</button>
     </form>
     <br>
-    <p id="estado"></p>
-    <table border="1px solid">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Pais</th>
-                <th>Capital</th>
-                <th>Imagen</th>
-            </tr>
-        </thead>
-        <tbody id="tablaResultados">
-        </tbody>
+    <p id="estadoRegion"></p>
+    <table id="regionTabla" border="1">
     </table>
-    <script src="script-region.js"></script>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,55 +1,51 @@
-const formulario = document.querySelector('form');
-const inputNombre = document.getElementById('inputNombre');
-const tablaResultados = document.getElementById('tablaResultados');
-const estado = document.getElementById('estado');
+const regionForm = document.getElementById('regionForm');
+const tablaPaisesRegion = document.getElementById('regionTabla');
 
-formulario.addEventListener('submit', async (e) => {
+const buscarPaisesPorRegion = async (e) => {
     e.preventDefault();
-    const nombre = inputNombre.value.trim();
-    if (nombre === '') {
-        alert('Por favor, ingresa el nombre del personaje');
+    let region = document.getElementById('regionInput').value;
+    if (region === '') {
+        alert('Debe ingresar el nombre de una región.');
         return;
     }
-    tablaResultados.innerHTML = '';
-    estado.innerText = 'Buscando personajes...';
+
+    const url = `https://restcountries.com/v3.1/region/${region}`;
 
     try {
-        const respuesta = await fetch(`https://restcountries.com/v3.1/region/${inputNombre}`);
+        const respuesta = await fetch(url);
+
         if (respuesta.ok) {
             const data = await respuesta.json();
-            const resultados = data.results;
 
-            if (resultados.length === 0) {
-                estado.innerText = 'No se encontro la region';
-            } else {
-                resultados.forEach((personaje) => {
-                    const row = document.createElement('tr');
-                    const idCell = document.createElement('td');
-                    idCell.textContent = pais.value;
-                    const nombreCell = document.createElement('td');
-                    nombreCell.textContent = pais.name.official;
-                    const especieCell = document.createElement('td');
-                    especieCell.textContent = pais.capital[0];
-                    const imagenCell = document.createElement('td');
-                    const imagen = document.createElement('img');
-                    imagen.src = pais.flags.png;
-                    imagen.alt = pais.name.official;
-                    imagenCell.appendChild(imagen);
+            tablaPaisesRegion.innerHTML = '';
 
-                    row.appendChild(valueCell);
-                    row.appendChild(paisCell);
-                    row.appendChild(capitalCell);
-                    row.appendChild(imagenCell);
+            if (data.length > 0) {
+                const titulo = document.createElement('tr');
+                const th = document.createElement('th');
+                th.textContent = `Países en la región ${region}:`;
+                titulo.appendChild(th);
+                tablaPaisesRegion.appendChild(titulo);
 
-                    tablaResultados.appendChild(row);
+                data.forEach(pais => {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = pais.name.common;
+                    tr.appendChild(td);
+                    tablaPaisesRegion.appendChild(tr);
                 });
-                estado.innerText = `Mostrando ${resultados.length} paises`;
+                document.getElementById('estadoRegion').innerText = '';
+                tablaPaisesRegion.style.display = 'table';
+            } else {
+                document.getElementById('estadoRegion').innerText = 'No se encontraron países en esa región.';
+                tablaPaisesRegion.style.display = 'none';
             }
         } else {
-            estado.innerText = 'Error en la consulta a la API';
+            document.getElementById('estadoRegion').innerText = 'No se encontraron países en esa región.';
+            tablaPaisesRegion.style.display = 'none';
         }
     } catch (error) {
-        estado.innerText = 'Error en la consulta a la API';
         console.log(error);
     }
-});
+}
+
+regionForm.addEventListener('submit', buscarPaisesPorRegion);

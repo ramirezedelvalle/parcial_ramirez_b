@@ -10,7 +10,7 @@ const consultarPais = async (evento) => {
     alert("Ingrese el nombre de un país");
     return;
   }
-    // CONFIGURANDO LA PETICIÓN y el url de API DE PAISES ATRAVEZ DEL MMTODO GET
+    // CONFIGURANDO LA PETICIÓN y el url de API DE PAISES ATRAVEZ DEL METODO GET
     const url = `https://restcountries.com/v3.1/translation/${nombrePais}`;
     const config = {
       method: 'GET'

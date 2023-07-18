@@ -3,15 +3,15 @@ const tabla = document.querySelector('table');
 
 tabla.style.display = 'none';
 
-const consultarCapital = async (evento) => {
+const consultarPais = async (evento) => {
   evento.preventDefault();
-  let nombreCapital = formul.capital.value;
-  if (nombreCapital === '') {
+  let nombrePais = formul.pais.value;
+  if (nombrePais === '') {
     alert("Ingrese el nombre de un país");
     return;
   }
-
-    const url = `https://restcountries.com/v3.1/capital/${nombreCapital}`;
+    // CONFIGURANDO LA PETICIÓN y el url de API DE PAISES ATRAVEZ DEL METODO GET
+    const url = `https://restcountries.com/v3.1/capital/${nombrePais}`;
     const config = {
       method: 'GET'
     };
@@ -24,7 +24,7 @@ const consultarCapital = async (evento) => {
     const respuesta = await fetch(url, config);
     if (respuesta.status) {
       const data = await respuesta.json();
-      const capital = data[0];
+      const pais = data[0];
       console.log(data); 
       console.log(pais.name.common);
       console.log(pais.area);
@@ -32,7 +32,7 @@ const consultarCapital = async (evento) => {
       console.log(pais.region);
       console.log(pais.flag);
 
-      document.getElementById('nombrePais').innerText = pais.name.official[0];
+      document.getElementById('nombrePais').innerText = pais.name.official;
       document.getElementById('areaPais').innerText = pais.area;
       document.getElementById('capitalPais').innerText = pais.capital[0];
       document.getElementById('regionPais').innerText = pais.region;
@@ -69,4 +69,4 @@ const consultarAPI = async (e) => {
   }
 }
 
-formul.addEventListener('submit', consultarCapital);
+formul.addEventListener('submit', consultarPais);
